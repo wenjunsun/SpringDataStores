@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.entity;
 
 import com.udacity.jdnd.course3.critter.enums.EmployeeSkill;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -11,6 +12,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Nationalized
     private String name;
     // This is how you save a collection of enum with JPA annotations.
     @ElementCollection(targetClass = EmployeeSkill.class)

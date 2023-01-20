@@ -1,5 +1,7 @@
 package com.udacity.jdnd.course3.critter.entity;
 
+import org.hibernate.annotations.Nationalized;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,8 +10,10 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Nationalized
     private String name;
     private String phoneNumber;
+    @Nationalized
     private String notes;
     // One customer can own multiple pets. Doesn't make much sense
     // for multiple customers to own one pet.

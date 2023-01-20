@@ -1,6 +1,7 @@
 package com.udacity.jdnd.course3.critter.entity;
 
 import com.udacity.jdnd.course3.critter.enums.PetType;
+import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,12 +17,14 @@ public class Pet {
     // additional enum values in the end.
     @Enumerated(EnumType.STRING)
     private PetType type;
+    @Nationalized
     private String name;
     @ManyToOne
     private Customer owner;
     // According to https://thorben-janssen.com/hibernate-jpa-date-and-time/,
     // java.time.LocalDate can be directly mapped to DATE type in JDBC.
     private LocalDate birthDate;
+    @Nationalized
     private String notes;
 
     // no-arg constructor needed for Spring JPA
