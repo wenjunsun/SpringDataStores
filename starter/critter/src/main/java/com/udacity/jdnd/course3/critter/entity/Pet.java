@@ -19,7 +19,9 @@ public class Pet {
     private PetType type;
     @Nationalized
     private String name;
-    @ManyToOne
+    // Lazy loading here so that if we don't reference the owner field
+    // on this pet, we don't fetch it.
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer owner;
     // According to https://thorben-janssen.com/hibernate-jpa-date-and-time/,
     // java.time.LocalDate can be directly mapped to DATE type in JDBC.
