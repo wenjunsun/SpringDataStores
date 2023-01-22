@@ -3,6 +3,7 @@ package com.udacity.jdnd.course3.critter.entity;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,8 +18,15 @@ public class Customer {
     private String notes;
     // One customer can own multiple pets. Doesn't make much sense
     // for multiple customers to own one pet.
-    @OneToMany
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Pet> petsOwned;
+
+    public void addPet(Pet p) {
+        if (petsOwned == null) {
+            petsOwned = new ArrayList<>();
+        }
+        petsOwned.add(p);
+    }
 
     public Customer() {
     }
