@@ -78,11 +78,13 @@ public class UserController {
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customer, customerDTO);
 
-        List<Long> petIds = new ArrayList<>();
-        for (Pet pet: customer.getPetsOwned()) {
-            petIds.add(pet.getId());
+        if (customer.getPetsOwned() != null) {
+            List<Long> petIds = new ArrayList<>();
+            for (Pet pet: customer.getPetsOwned()) {
+                petIds.add(pet.getId());
+            }
+            customerDTO.setPetIds(petIds);
         }
-        customerDTO.setPetIds(petIds);
 
         return customerDTO;
     }
@@ -91,11 +93,13 @@ public class UserController {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDTO, customer);
 
-        List<Pet> pets = new ArrayList<>();
-        for (Long petId: customerDTO.getPetIds()) {
-            pets.add(petService.getPetById(petId));
+        if (customerDTO.getPetIds() != null) {
+            List<Pet> pets = new ArrayList<>();
+            for (Long petId: customerDTO.getPetIds()) {
+                pets.add(petService.getPetById(petId));
+            }
+            customer.setPetsOwned(pets);
         }
-        customer.setPetsOwned(pets);
 
         return customer;
     }
