@@ -18,7 +18,7 @@ public class Customer {
     private String notes;
     // One customer can own multiple pets. Doesn't make much sense
     // for multiple customers to own one pet.
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Pet> petsOwned;
 
     public void addPet(Pet p) {
