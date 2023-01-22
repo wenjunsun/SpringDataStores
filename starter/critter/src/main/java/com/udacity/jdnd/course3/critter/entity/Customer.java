@@ -13,8 +13,11 @@ public class Customer {
     private Long id;
     @Nationalized
     private String name;
+    // don't think any phone number in the world can have more than 30 digits.
+    @Column(length = 30)
     private String phoneNumber;
     @Nationalized
+    @Column(length = 1000) // default length of 255 might be too short for notes.
     private String notes;
     // One customer can own multiple pets. Doesn't make much sense
     // for multiple customers to own one pet.

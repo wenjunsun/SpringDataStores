@@ -27,6 +27,7 @@ public class Pet {
     // java.time.LocalDate can be directly mapped to DATE type in JDBC.
     private LocalDate birthDate;
     @Nationalized
+    @Column(length = 1000) // default length of 255 might be too short for notes.
     private String notes;
 
     // no-arg constructor needed for Spring JPA
